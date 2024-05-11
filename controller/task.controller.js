@@ -24,4 +24,20 @@ taskController.getTask = async (req, res) => {
     }
 }
 
+// 할 일에 대해 끝남, 안끝남 표시를 하는 기능
+taskController.updateTask = async(req, res) => {
+    try{
+        const task = await Task.findById(req.params.id);
+        if(!task){
+            throw new Error("App can not find the task");
+        }
+        const fields = Object.keys(req.body);
+        fields.map((item) => (task[item] = req.body[item]));
+        await task.save();
+        res.status(200).json({ status: "ok", data: task})
+    }catch(err){
+        res.status(400).json({ status: 'fail', error: err })
+    }
+}
+
 module.exports = taskController
