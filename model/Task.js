@@ -11,7 +11,7 @@ const taskSchema = Schema({
         type: Boolean,
         required: true
     }
-})
+},{ timestamps: true })
 
 // 모델
 const Task = mongoose.model("Task", taskSchema)
