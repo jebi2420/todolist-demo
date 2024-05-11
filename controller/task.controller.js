@@ -34,7 +34,17 @@ taskController.updateTask = async(req, res) => {
         const fields = Object.keys(req.body);
         fields.map((item) => (task[item] = req.body[item]));
         await task.save();
-        res.status(200).json({ status: "ok", data: task})
+        res.status(200).json({ status: "ok", data: task })
+    }catch(err){
+        res.status(400).json({ status: 'fail', error: err })
+    }
+}
+
+// 할 일을 삭제하는 기능
+taskController.deleteTask = async(req, res) => {
+    try{
+        const deleteItem = await Task.findByIdAndDelete(req.params.id);
+        res.status(200).json({ status: "ok", data: deleteItem })
     }catch(err){
         res.status(400).json({ status: 'fail', error: err })
     }
