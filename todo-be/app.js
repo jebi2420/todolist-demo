@@ -9,7 +9,7 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use("/api", indexRouter);
 
-const mongoURI = `mongodb://localhost:27017/todo-demo`
+const mongoURI = MONGODB_URI_PROD;
 
 mongoose.connect(mongoURI, {useNewUrlParser:true}).then(()=>{
     console.log('mongoose connected');
