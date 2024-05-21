@@ -2,3 +2,5 @@
 .DS_Store
 
 todo-be/todo-be.zip
+
+.env
