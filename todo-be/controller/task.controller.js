@@ -20,6 +20,7 @@ taskController.getTask = async (req, res) => {
     try{
         const taskList = await Task.find({}).populate("author"); // 테스크 항목을 다 읽어온다(__v 빼고)
         res.status(200).json({ status: "ok", data: taskList})
+        console.log("tasklist:", taskList)
     }catch(err){
         res.status(400).json({ status: 'fail', error: err })
     }
