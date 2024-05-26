@@ -18,7 +18,7 @@ taskController.createTask = async (req, res) => {
 // 할 일 리스트를 볼 수 있는 기능
 taskController.getTask = async (req, res) => {
     try{
-        const taskList = await Task.find({}).select("-__v").populate("author"); // 테스크 항목을 다 읽어온다(__v 빼고)
+        const taskList = await Task.find({}).populate("author"); // 테스크 항목을 다 읽어온다(__v 빼고)
         res.status(200).json({ status: "ok", data: taskList})
     }catch(err){
         res.status(400).json({ status: 'fail', error: err })
